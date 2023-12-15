@@ -1,0 +1,92 @@
+#include <iostream>
+#include <ctime>
+#include <wchar.h>
+#include <Windows.h>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <cstring>
+#include <conio.h>
+#include <iomanip>
+#include <process.h>
+#include <Windows.h>
+#include <time.h>
+#include <ctime>
+#include <cstdlib>
+#include <typeinfo>
+#include <fstream>
+
+using namespace std;
+class elevator {
+private:
+    const int minFloor = -15;
+    int floor = 0;
+    unsigned const int maxFloor = 15;
+public :
+    void elevatorfl() {
+        if (floor < minFloor)
+            abort;
+        char floorMovement;
+        cout << "\nEnter - 'u' to raise ";
+        cout << "\nEnter - 'd' to reduce ";
+        cin >> floorMovement;
+        if (floorMovement == 'u') {
+            elevatorUp(floor);
+            this->floor == floorMovement;
+        }
+        else if (floorMovement == 'd') {
+            elevatorDown(floor);
+        }
+        floor == floorMovement;
+    }
+    void elevatorUp(int &fl);
+    void elevatorDown(int &fl);
+    bool Legal(int& fl) {
+        return fl >= minFloor;
+    }
+};
+void elevator::elevatorDown(int &fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (Legal(floor1) == true) {}
+    else if (Legal(floor1) == false) {
+        exit(0);
+        abort;
+        atexit(0);
+        return;
+    }
+    if (floor1 > fl) {
+        cout << "\nIt was necessary to choose 'u'";
+    }
+    else if (floor1 < fl) {
+        cout << "\nYour floor " << floor1;
+        floor == floor1;
+    }
+}
+void elevator::elevatorUp(int &fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (Legal(floor1) == true) {}
+    else if (Legal(floor1) == false) {
+        exit(0);
+        abort;
+    }
+    if (floor1 < fl) {
+        cout << "\nIt was necessary to choose 'd'";
+    }
+    else if (floor1 > fl) {
+        cout << "\nYour floor " << floor1;
+        floor == floor1;
+    }
+}
+
+int main() {
+    elevator elevator1;
+    while (true) {
+        elevator1.elevatorfl();
+    }
+}
