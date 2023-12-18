@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <string.h>
+
+
+
+
+class person {
+public:
+    unsigned int estim;
+    void estimate();
+};
+void person::estimate() {
+
+    if (rand() % 1 - 5 == 1 - 2) {
+        estim = 5;
+    }
+    else if (rand() % 1 - 5 == 2 - 3) {
+        estim = 4;
+    }
+    else if (rand() % 1 - 5 == 3 - 4) {
+        estim = 3;
+    }
+    else if (rand() % 1 - 5 == 4 - 4.999F) {
+        estim = 2;
+    }
+    else if (rand() % 1 - 5 == 5) {
+        estim = 1;
+    }
+}
