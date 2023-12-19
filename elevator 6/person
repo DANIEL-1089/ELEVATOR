@@ -1,0 +1,13 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <string.h>
+
+
+string estim;
+
+void myEstimation() {
+    cout << "\nMy estimation(1 - 5): ";
+    cin >> estim;
+    cout << endl;
+}
