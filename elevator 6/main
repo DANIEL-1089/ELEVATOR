@@ -25,9 +25,10 @@
 using namespace std;
 
 bool elevatorPersTrueFalse = false;
-ostream estimOfPers;
+ofstream estimOfPers;
+ifstream estimOfPers;
 
-class elevatorPers : public elevatorPers {
+class elevatorPers {
 private:
     const int minFloor = 0;
     int floor = 0;
