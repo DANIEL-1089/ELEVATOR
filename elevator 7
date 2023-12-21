@@ -1,0 +1,143 @@
+#include <iostream>
+#include <ctime>
+#include <wchar.h>
+#include <Windows.h>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <cstring>
+#include <conio.h>
+#include <iomanip>
+#include <process.h>
+#include <Windows.h>
+#include <time.h>
+#include <ctime>
+#include <cstdlib>
+#include <typeinfo>
+#include <fstream>
+
+
+using namespace std;
+
+ofstream OHistory;
+ifstream IHistory;
+void myEstimation();
+
+
+
+class elevator {
+public:
+    const int minFloor = 0;
+    int floor = 0;
+    unsigned const int maxFloor = 15;
+public:
+    void elevatorfl() {
+        if (floor < minFloor)
+            abort;
+        if (floor > maxFloor)
+            exit(0);
+        char floorMovement;
+        cout << "\nEnter - 'u' to raise ";
+        cout << "\nEnter - 'd' to reduce ";
+        cin >> floorMovement;
+        if (floorMovement == 'u') {
+            elevatorUp(floor);
+            this->floor == floorMovement;
+        }
+        else if (floorMovement == 'd') {
+            elevatorDown(floor);
+        }
+        floor == floorMovement;
+    }
+    void elevatorUp(int& fl);
+    void elevatorDown(int& fl);
+    bool Legal(int& fl) {
+        return fl >= minFloor;
+    }
+    void History();
+};
+elevator elevator1;
+void elevator::elevatorDown(int& fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (Legal(floor1) == true)
+    {}
+    else if (Legal(floor1) == false)
+        exit(0);
+
+    if (floor1 == floor) {
+        cout << "\nYou already here";
+    }
+    else if (fl > floor1) {
+        OHistory.open("History.DAT");
+        cout << "\nThe elevator is coming";
+        Sleep(5000);
+        myEstimation();
+        cout << "\nYour floor " << floor1;
+        floor == floor1;
+        OHistory << floor;
+        OHistory.close();
+    }
+    if (fl < floor1) {
+        cout << "\nIt was necessary to choose 'u'";
+    }
+}
+void elevator::elevatorUp(int& fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (Legal(floor1) == true)
+    {}
+    else if (Legal(floor1) == false) {
+        exit(0);
+    }
+
+    if (floor1 == floor) {
+        cout << "\nYou already here";
+    }
+    else if (floor1 > fl) {
+        OHistory.open("History.DAT");
+        cout << "\nThe elevator is coming";
+        Sleep(5000);
+        cout << "\nYour floor " << floor1;
+        myEstimation();
+        floor == floor1;
+        OHistory << floor;
+        OHistory.close();
+    }
+    else if (floor1 < fl) {
+        cout << "\nIt was necessary to choose 'd'";
+    }
+}
+
+
+void History() {
+    IHistory.open("History.DAT");
+    while (true) {
+        IHistory >> elevator1.floor;
+        if (IHistory.eof()) {
+            cout << "\nHistory: ";
+            cout << "\nfloor: " << elevator1.floor << endl;
+            break;
+        }
+    }
+}
+
+void myEstimation() {
+    int estim = rand() % 5 - 100;
+    cout << "\nMy estimation: " << estim << endl;
+}
+
+
+
+
+int main() {
+    char d;
+    while (true) {
+        elevator1.elevatorfl();
+        History();
+    }
+}
