@@ -1,0 +1,169 @@
+#include <iostream>
+#include <ctime>
+#include <wchar.h>
+#include <Windows.h>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <cstring>
+#include <conio.h>
+#include <iomanip>
+#include <process.h>
+#include <Windows.h>
+#include <time.h>
+#include <ctime>
+#include <cstdlib>
+#include <typeinfo>
+#include <fstream>
+
+
+using namespace std;
+void myEstimation();
+
+
+
+class elevator {
+public:
+    int money = 0;
+    const int maxVIPFloor = -3;
+    const int minVIPFloor = -5;
+    const int minFloor = -5;
+    int floor = 0;
+    const int maxFloor = 15;
+public:
+    void elevatorfl() {
+        char floorMovement;
+        cout << "\nEnter - 'u' to raise ";
+        cout << "\nEnter - 'd' to reduce ";
+        cin >> floorMovement;
+        if (floorMovement == 'u') {
+            elevatorUp(floor);
+            this->floor == floorMovement;
+        }
+        else if (floorMovement == 'd') {
+            elevatorDown(floor);
+        }
+        floor == floorMovement;
+    }
+    void elevatorUp(int& fl);
+    void elevatorDown(int& fl);
+    bool Legal(int& fl) {
+        return fl >= minFloor;
+    }
+    void MoveUp(int maxfl);
+    void MoveDown(int minfl);
+    void VIPFloors();
+};
+elevator elevator1;
+void elevator::elevatorDown(int& fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (floor1 < minFloor) {
+        cout << "\nNo";
+        abort;
+    }
+    if (floor1 > maxFloor) {
+        cout << "\nNo";
+        exit(0);
+    }
+    if (Legal(floor1) == true)
+    {
+    }
+    else if (Legal(floor1) == false)
+        exit(0);
+    if (floor1 < maxVIPFloor)
+        VIPFloors();
+
+
+    if (fl > floor1) {
+        cout << "\nThe elevator is coming";
+        Sleep(3000);
+        MoveDown(floor1);
+        myEstimation();
+        floor == floor1;
+        money += 10;
+        cout << "\nMoney: " << money << endl;
+    }
+    else if (fl < floor1) {
+        cout << "\nIt was necessary to choose 'u'\n";
+    }
+}
+void elevator::elevatorUp(int& fl) {
+    int floor1;
+    cout << "\nWhere do you want to go?(floor num) ";
+    cin >> floor1;
+    if (floor1 < minFloor) {
+        cout << "\nNo";
+        abort;
+    }
+    if (floor1 > maxFloor) {
+        cout << "\nNo";
+        exit(0);
+    }
+    if (Legal(floor1) == true)
+    {
+    }
+    else if (Legal(floor1) == false) {
+        exit(0);
+    }
+    
+    if (floor1 > fl) {
+        cout << "\nThe elevator is coming";
+        Sleep(3000);
+        MoveUp(floor1);
+        myEstimation();
+        floor == floor1;
+        money += 10;
+        cout << "\nMoney: " << money << endl;
+    }
+    else if (floor1 < fl) {
+        cout << "\nIt was necessary to choose 'd'\n";
+    }
+}
+void elevator::MoveUp(int maxfl) {
+    floor += 1;
+    while (floor != maxfl + 1) {
+        Sleep(1000);
+        cout << "\nYour floor: " << floor++ << endl;
+    }
+}
+void elevator::MoveDown(int minfl) {
+    floor -= 1;
+    while (floor != minfl - 1) {
+        Sleep(1000);
+        cout << "\nYour floor: " << floor-- << endl;
+    }
+}
+
+void myEstimation() {
+    srand(time(0));
+    int estim = (rand() % 5) + 1;
+    cout << "\nMy estimation: " << estim << endl;
+}
+
+void elevator::VIPFloors() {
+    char yn;
+    int needMoney = 30;
+    cout << "\nYour Money: " << money << endl;
+    cout << "\nNeed money: " << needMoney << endl;
+    if (money >= needMoney) {
+        cout << "\nYou can go through" << endl;
+        money -= needMoney;
+        cout << "\nMoney: " << endl;
+    }
+    else if (money < needMoney) {
+        cout << "\nYou cant go through" << endl;
+        floor == 0;
+        cout << "\nFloor: " << floor << endl;
+    }
+}
+
+
+int main() {
+    while (true) {
+        elevator1.elevatorfl();
+    }
+}
